@@ -1,0 +1,1666 @@
+﻿@charset "utf-8";
+
+/*导入字体*/
+@font-face {
+    font-family: 'dianshu';
+    src: url('../font/dianshu.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.dianshu {
+    font-family: 'dianshu';
+}
+
+/* CSS Document wlo:Cflower */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    border: 0 none;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: outside none none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote::before, blockquote::after, q::before, q::after {
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0 none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input, textarea {
+    border-radius: 0;
+    outline: 0 none;
+    resize: none;
+    -webkit-appearance: none;
+    /*去掉iOS下input的默认内阴影*/
+}
+
+.clearfix:after, .clearfloat:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: "";
+    clear: both;
+    height: 0;
+}
+
+html {
+    font-family: "Microsoft YaHei", 'Tahoma', 'Helvetica', 'PingFangSC-Regular', "Heiti SC", "sans-serif";
+    -webkit-text-size-adjust: none;
+}
+
+body {
+    margin: 0 auto;
+    min-width: 3.2rem;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #001218;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.clearfloat:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.ridius {
+    border-radius: 5px;
+}
+
+/* 假如添加了video标签,可能会出现video标签默认置顶的情况,解决这个bug可以通过样式设置来规避;*/
+.compatibleStyle {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Chrome 和 Safari */
+    -moz-backface-visibility: hidden;
+    /* Firefox */
+    -ms-backface-visibility: hidden;
+    /* Internet Explorer */
+    -webkit-perspective: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    visibility: visible;
+}
+
+/*弹出层遮罩div*/
+.black_overlay {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 988;
+    -moz-opacity: 0.5;
+    opacity: .50;
+    filter: alpha(opacity=50);
+}
+
+.btn {
+    display: block;
+    cursor: pointer;
+}
+
+.pos {
+    position: absolute;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.w750 {
+    width: 100%;
+}
+
+.curp {
+    cursor: pointer;
+}
+
+.imgcove {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+}
+
+.yellow {
+    color: #ffd800;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+/*=========================== dialog通用样式开始 ====================================*/
+#maskLayer {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    background: #040001;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+
+#alertInfo {
+    display: none;
+    background: rgba(255, 255, 255, 0);
+    left: 50%;
+    top: -100%;
+    position: absolute;
+    z-index: 10001;
+    width: 100%;
+    max-width: 7.5rem;
+}
+
+#alertInfo .close, .layer_close {
+    position: absolute;
+    right: .4rem;
+    top: -0.3rem;
+    transform: rotate(-45deg);
+    overflow: hidden;
+    display: block;
+    width: 0.7rem;
+    height: 0.7rem;
+    cursor: pointer;
+    background: url(../images/pop/pop_close.png) no-repeat center center;
+    background-size: .7rem .7rem;
+    z-index: 999;
+    cursor: pointer;
+    text-indent: -999em;
+}
+
+/* ==========弹出框========== */
+.pop {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/*弹出层*/
+.pop_warp_img, .popytbVideo {
+    width: 100%;
+    height: 4.22rem;
+}
+
+.popytbVideo video {
+    width: 100%;
+    height: 100%;
+}
+
+.news_lists {
+    height: 13.5rem;
+}
+
+/* 公共部分结束 */
+#wrap {
+    width: 7.5rem;
+    height: auto;
+    /* background: #fff; */
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* 顶部导航条 */
+.topbar {
+    width: 7.5rem;
+    height: 1.04rem;
+    background: url(../images/topbar.png) no-repeat 0 0 / 100% 100%;
+    position: fixed;
+    z-index: 11;
+}
+
+.topbar-btn {
+    height: 1.04rem;
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-right: .2rem;
+}
+
+.topbar-fb, .topbar-download {
+    width: .78rem;
+    height: .62rem;
+    margin: 0 .15rem;
+}
+
+/* kv */
+.kv {
+    width: 7.5rem;
+    height: 10.8rem;
+    position: relative;
+}
+
+.title-gz {
+    width: 1.4rem;
+    height: .38rem;
+    background: url(../images/title-gz.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    right: .3rem;
+    top: 1.5rem;
+    z-index: 10;
+}
+
+.kv:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../images/kv.png) no-repeat 0 0 / 100% 100%;
+    z-index: 9;
+}
+
+.bg-kv {
+    width: 7.5rem;
+    height: 10.8rem;
+    background: url(../images/bg.jpg) no-repeat 0 0 / 100% 100%;
+}
+
+.bg-kv video {
+    width: 100%;
+    height: 100%;
+}
+
+/* 第一部分 */
+.s1 {
+    width: 7.5rem;
+    height: 23.43rem;
+    background: url(../images/s1.jpg) no-repeat 0 0 / 100% 100%;
+    position: relative;
+}
+
+.maps {
+    width: 7.5rem;
+    height: 24.62rem;
+    background: url(../images/maps.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    top: -1.3rem;
+    left: 0;
+}
+
+
+.maps .hero {
+    width: 2.8rem;
+    height: 2.8rem;
+    position: absolute;
+    z-index: 9;
+}
+
+.step0 {
+    top: .6rem;
+    left: 1.35rem;
+}
+
+.step1 {
+    top: 1.3rem;
+    left: 2rem
+}
+
+.step2 {
+    top: 1.8rem;
+    left: 3.7rem;
+}
+
+.step3 {
+    top: 2.7rem;
+    left: 4.7rem;
+}
+
+.step4 {
+    top: 3.45rem;
+    left: 3.35rem;
+}
+
+.step5 {
+    top: 3.15rem;
+    left: 1.3rem;
+}
+
+.step6 {
+    top: 4.55rem;
+    left: 0.3rem;
+}
+
+.step7 {
+    top: 5.2rem;
+    left: 1.9rem;
+}
+
+.step8 {
+    top: 5.55rem;
+    left: 4.15rem;
+}
+
+.step9 {
+    top: 6.85rem;
+    left: 3.65rem;
+}
+
+.step10 {
+    top: 7rem;
+    left: 1.65rem;
+}
+
+.step11 {
+    top: 8.1rem;
+    left: 0.5rem;
+}
+
+.step12 {
+    top: 9rem;
+    left: 2.1rem;
+}
+
+.step13 {
+    top: 8.9rem;
+    left: 4.25rem;
+}
+
+.step14 {
+    top: 10.3rem;
+    left: 4.3rem;
+}
+
+.step15 {
+    top: 10.9rem;
+    left: 2.15rem;
+}
+
+.step16 {
+    top: 11.75rem;
+    left: 0.25rem;
+}
+
+.step17 {
+    top: 12.75rem;
+    left: 1.45rem;
+}
+
+.step18 {
+    top: 12.75rem;
+    left: 4.1rem;
+}
+
+.step19 {
+    top: 14.05rem;
+    left: 4.3rem;
+}
+
+.step20 {
+    top: 14.35rem;
+    left: 2.6rem;
+}
+
+.step21 {
+    top: 15.2rem;
+    left: 0.5rem;
+}
+
+.step22 {
+    top: 16.5rem;
+    left: 1.2rem;
+}
+
+.step23 {
+    top: 16.65rem;
+    left: 3.6rem;
+}
+
+.step24 {
+    top: 18rem;
+    left: 4rem;
+}
+
+.step25 {
+    top: 18.6rem;
+    left: 1.6rem;
+}
+
+.maps .plan-a {
+    background: url(../images/ani-qu1.png) no-repeat 0 0 / 2.8rem 112rem;
+    animation: run 3s steps(39) infinite;
+    -webkit-animation: run 3s steps(39) infinite
+}
+
+.maps .plan-b {
+    background: url(../images/ani-qu2.png) no-repeat 0 0 / 2.8rem 112rem;
+    animation: run 3s steps(39) infinite;
+    -webkit-animation: run 3s steps(39) infinite
+}
+
+@-webkit-keyframes run {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 100%;
+    }
+}
+
+@keyframes run {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 100%;
+    }
+}
+
+@-webkit-keyframes unrun {
+    from {
+        background-position: 0 100%;
+    }
+
+    to {
+        background-position: 0 0;
+    }
+}
+
+@keyframes unrun {
+    from {
+        background-position: 0 100%;
+    }
+
+    to {
+        background-position: 0 0;
+    }
+}
+
+
+.maps .route {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.route-v0 {
+    width: 1.01rem;
+    height: .59rem;
+    background: url(../images/maps/0.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v1, .route-v3, .route-v4,
+.route-v6, .route-v8, .route-v9,
+.route-v10, .route-v14, .route-v16,
+.route-v17, .route-v19, .route-v20 {
+    width: 1.26rem;
+    height: .49rem;
+    background: url(../images/maps/1.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v2, .route-v13, .route-v7 {
+    width: 1.99rem;
+    height: .78rem;
+    background: url(../images/maps/2.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v5, .route-v12 {
+    width: 1.78rem;
+    height: 1.07rem;
+    background: url(../images/maps/5.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v11 {
+    width: 1.95rem;
+    height: .77rem;
+    background: url(../images/maps/11.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+
+.route-v15, .route-v21 {
+    width: 2.21rem;
+    height: .86rem;
+    background: url(../images/maps/15.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v18 {
+    width: 2.21rem;
+    height: .82rem;
+    background: url(../images/maps/18.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v22 {
+    width: 1.54rem;
+    height: .6rem;
+    background: url(../images/maps/22.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v23 {
+    width: 2.12rem;
+    height: .83rem;
+    background: url(../images/maps/23.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v24 {
+    width: 1.55rem;
+    height: .6rem;
+    background: url(../images/maps/24.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v25 {
+    width: 2.49rem;
+    height: .97rem;
+    background: url(../images/maps/25.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v1.curr, .route-v3.curr, .route-v4.curr,
+.route-v6.curr, .route-v8.curr, .route-v9.curr,
+.route-v10.curr, .route-v14.curr, .route-v16.curr,
+.route-v17.curr, .route-v19.curr, .route-v20.curr {
+    width: 1.26rem;
+    height: .49rem;
+    background: url(../images/maps/1curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v2.curr, .route-v13.curr, .route-v7.curr {
+    width: 1.99rem;
+    height: .78rem;
+    background: url(../images/maps/2curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v5.curr, .route-v12.curr {
+    width: 1.78rem;
+    height: 1.07rem;
+    background: url(../images/maps/5curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v11.curr {
+    width: 1.95rem;
+    height: .77rem;
+    background: url(../images/maps/11curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+
+.route-v15.curr, .route-v21.curr {
+    width: 2.21rem;
+    height: .86rem;
+    background: url(../images/maps/15curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v18.curr {
+    width: 2.21rem;
+    height: .82rem;
+    background: url(../images/maps/18curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v22.curr {
+    width: 1.54rem;
+    height: .6rem;
+    background: url(../images/maps/22curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v23.curr {
+    width: 2.12rem;
+    height: .83rem;
+    background: url(../images/maps/23curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v24.curr {
+    width: 1.55rem;
+    height: .6rem;
+    background: url(../images/maps/24curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v25.curr {
+    width: 2.49rem;
+    height: .97rem;
+    background: url(../images/maps/25curr.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+}
+
+.route-v1.bowen::after, .route-v3.bowen::after, .route-v4.bowen::after, .route-v6.bowen::after, .route-v8.bowen::after, .route-v9.bowen::after,
+.route-v10.bowen::after, .route-v14.bowen::after, .route-v16.bowen::after, .route-v17.bowen::after, .route-v19.bowen::after, .route-v20.bowen::after {
+    content: '';
+    width: 1.66rem;
+    height: .74rem;
+    background: url(../images/min-ly.png) no-repeat 0 0 / 100% 100%;
+    opacity: 0.1;
+    position: absolute;
+    top: -0.1rem;
+    left: -0.1rem;
+    animation: boboTwo 1000ms 500ms ease-out infinite;
+    z-index: 0;
+}
+
+.route-v1.bowen::before, .route-v3.bowen::before, .route-v4.bowen::before, .route-v6.bowen::before, .route-v8.bowen::before, .route-v9.bowen::before,
+.route-v10.bowen::before, .route-v14.bowen::before, .route-v16.bowen::before, .route-v17.bowen::before, .route-v19.bowen::before, .route-v20.bowen::before {
+    content: '';
+    width: 1.66rem;
+    height: .74rem;
+    background: url(../images/min-ly.png) no-repeat 0 0 / 100% 100%;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: -0.1rem;
+
+    animation: boboTwo 1500ms 750ms ease-out infinite;
+    z-index: 0;
+}
+
+
+.route-v2.bowen::after, .route-v7.bowen::after, .route-v11.bowen::after, .route-v13.bowen::after, .route-v15.bowen::after, .route-v18.bowen::after, .route-v21.bowen::after, .route-v23.bowen::after, .route-v24.bowen::after, .route-v25.bowen::after {
+    content: '';
+    width: 2.4rem;
+    height: 1.06rem;
+    background: url(../images/big-ly.png) no-repeat 0 0 / 100% 100%;
+    opacity: 0.1;
+    position: absolute;
+    top: 0rem;
+    left: -0.1rem;
+    animation: boboThree 1000ms 500ms ease-out infinite;
+    z-index: 0;
+}
+
+.route-v5.bowen::after, .route-v12.bowen::after, .route-v22.bowen::after {
+    content: '';
+    width: 1.8rem;
+    height: .84rem;
+    background: url(../images/zho-ly.png) no-repeat 0 0 / 100% 100%;
+    opacity: 0.1;
+    position: absolute;
+    top: 0.5rem;
+    left: 0rem;
+    animation: bobo 1000ms 500ms ease-out infinite;
+    z-index: 0;
+}
+
+.route-v2.bowen::before, .route-v7.bowen::before, .route-v11.bowen::before, .route-v13.bowen::before, .route-v15.bowen::before, .route-v18.bowen::before, .route-v21.bowen::before, .route-v23.bowen::before, .route-v24.bowen::before, .route-v25.bowen::before {
+    content: '';
+    width: 2.4rem;
+    height: 1.06rem;
+    background: url(../images/big-ly.png) no-repeat 0 0 / 100% 100%;
+    opacity: 0.1;
+    position: absolute;
+    top: 0.6rem;
+    left: -0.1rem;
+    animation: boboThree 1500ms 750ms ease-out infinite;
+    z-index: 0;
+}
+
+.route-v5.bowen::before, .route-v12.bowen::before, .route-v22.bowen::before {
+    content: '';
+    width: 1.8rem;
+    height: .84rem;
+    background: url(../images/zho-ly.png) no-repeat 0 0 / 100% 100%;
+    opacity: 0.1;
+    position: absolute;
+    top: 0.5rem;
+    left: 0rem;
+    animation: bobo 1500ms 750ms ease-out infinite;
+    z-index: 0;
+}
+
+
+@keyframes heyeAni {
+    from {
+        top: -1rem;
+    }
+
+    to {
+        top: -0.8rem;
+    }
+}
+
+
+@keyframes bobo {
+    from {
+        opacity: 0.7;
+        transform: scale(0.5);
+        top: 0.4rem;
+    }
+
+    to {
+        top: .5rem;
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes boboTwo {
+    from {
+        opacity: 0.7;
+        transform: scale(0.5);
+        top: 0;
+    }
+
+    to {
+        top: .05rem;
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+
+@keyframes boboThree {
+    from {
+        opacity: 0.7;
+        transform: scale(0.5);
+        top: 0.1rem;
+    }
+
+    to {
+        top: 0.2rem;
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.book {
+    display: block;
+    width: 1.3rem;
+    height: 1.48rem;
+    background: url(../images/maps/book.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: -0.65rem;
+    top: -0.8rem;
+    animation: bookAni 1s alternate infinite;
+}
+
+@keyframes bookAni {
+    from {
+        top: -1rem;
+    }
+
+    to {
+        top: -0.8rem;
+    }
+}
+
+#doute0 {
+    top: 3rem;
+    left: 2.25rem;
+}
+
+#doute1 {
+    top: 3.75rem;
+    left: 2.88rem;
+}
+
+#doute2 {
+    top: 4.05rem;
+    left: 4.15rem;
+}
+
+#doute3 {
+    top: 5.15rem;
+    left: 5.55rem;
+}
+
+#doute4 {
+    top: 5.9rem;
+    left: 4.2rem;
+}
+
+#doute5 {
+    top: 5.3rem;
+    left: 1.8rem;
+}
+
+#doute6 {
+    top: 7rem;
+    left: 1.1rem;
+}
+
+#doute7 {
+    top: 7.5rem;
+    left: 2.42rem;
+}
+
+#doute8 {
+    top: 8rem;
+    left: 5rem;
+}
+
+#doute9 {
+    top: 9.25rem;
+    left: 4.48rem;
+}
+
+#doute10 {
+    top: 9.45rem;
+    left: 2.5rem;
+}
+
+#doute11 {
+    top: 10.4rem;
+    left: 1rem;
+}
+
+#doute12 {
+    top: 11.25rem;
+    left: 2.6rem;
+}
+
+#doute13 {
+    top: 11.2rem;
+    left: 4.75rem;
+}
+
+#doute14 {
+    top: 12.75rem;
+    left: 5.15rem;
+}
+
+#doute15 {
+    top: 13.15rem;
+    left: 2.52rem;
+}
+
+#doute16 {
+    top: 14.2rem;
+    left: 1.1rem;
+}
+
+#doute17 {
+    top: 15.2rem;
+    left: 2.25rem;
+}
+
+#doute18 {
+    top: 14.95rem;
+    left: 4.45rem;
+}
+
+#doute19 {
+    top: 16.5rem;
+    left: 5.1rem;
+}
+
+#doute20 {
+    top: 16.8rem;
+    left: 3.4rem;
+}
+
+#doute21 {
+    top: 17.4rem;
+    left: 0.9rem;
+}
+
+#doute22 {
+    top: 18.9rem;
+    left: 1.88rem;
+}
+
+#doute23 {
+    top: 18.9rem;
+    left: 3.95rem;
+}
+
+#doute24 {
+    top: 20.35rem;
+    left: 4.7rem;
+}
+
+#doute25 {
+    top: 20.8rem;
+    left: 1.8rem;
+}
+
+
+/* 第二部分 */
+.s2 {
+    width: 7.5rem;
+    height: 7.19rem;
+    background: url(../images/s2.jpg) no-repeat 0 0 / 100% 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.swp-pic h2 {
+    width: 4.24rem;
+    height: .62rem;
+    margin: .3rem auto 0;
+}
+
+.swp-wrap {
+    width: 6.94rem;
+    height: 4.02rem;
+    background: url(../images/swp-after.png) no-repeat 0 0 / 100% 100%;
+    margin: .5rem auto 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#swp1 {
+    width: 6.76rem;
+    height: 3.86rem;
+    background: url(../images/swp.png)no-repeat 0 0 / 100% 100%;
+    margin: .1rem auto 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#swp1 .swiper-wrapper .pic {
+    width: 6.64rem;
+    height: 3.74rem;
+    margin: .04rem auto 0;
+}
+
+.swp-pic .swiper-pagination {
+    width: 100%;
+    margin-top: .1rem;
+}
+
+.swp-pic .swiper-pagination .swiper-pagination-bullet {
+    width: .24rem;
+    height: .24rem;
+    background: url(../images/swp-item-curr.png) no-repeat 0 0 / 100% 100%;
+    margin: 0 .1rem;
+    opacity: 1;
+}
+
+.swp-pic .swiper-pagination .swiper-pagination-bullet-active {
+    background: url(../images/swp-item.png) no-repeat 0 0 / 100% 100%;
+}
+
+/* 底部跟随 */
+
+.botbar {
+    background: url(../images/botBar-bg.png) no-repeat 0 0/100% 100%;
+    width: 7.5rem;
+    height: 1.50rem;
+    position: absolute;
+    bottom: 18.34rem;
+    left: 50%;
+    margin-left: -3.75rem;
+    z-index: 10;
+}
+
+.botbar.fixed {
+    position: fixed;
+    bottom: 0;
+}
+
+.botbar-tip {
+    width: 5.7rem;
+    height: .34rem;
+    position: absolute;
+    top: -.4rem;
+    left: .8rem;
+    pointer-events: none
+}
+
+
+
+.botbar-leftNum {
+    width: 100%;
+    position: absolute;
+    top: .15rem;
+    left: 0;
+    text-align: center;
+    color: #dcfed5;
+    font-size: .2rem
+}
+
+.botbar-leftNum span {
+    color: #ffdb00;
+    font-weight: 700;
+
+}
+
+.botbar-btn {
+    width: 7.5rem;
+    height: .86rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: absolute;
+    top: .46rem;
+    left: 50%;
+    margin-left: -3.75rem
+}
+
+.botbar-logs, .botbar-share {
+    width: 2rem;
+    height: .85rem
+}
+
+.botbar-go {
+    width: 3.2rem;
+    height: .85rem;
+}
+
+.botbar-btn a img {
+    width: 100%;
+    height: 100%
+}
+
+/* 页面底部 */
+footer {
+    width: 7.5rem;
+    min-height: 4.99rem;
+    background: #001218 url(../images/footer.jpg) no-repeat center 0 / 100% 4.99rem;
+    margin-bottom: 4rem;
+}
+
+.footer_xy {
+    position: relative;
+}
+
+.footer_xy p {
+    color: #fff;
+    font-size: .24rem;
+    height: .58rem;
+    line-height: .5rem;
+    width: 92.5%;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid rgba(128, 128, 128, .5);
+    position: relative
+}
+
+.footer_xy p:nth-child(1) {
+    border-top: 1px solid rgba(128, 128, 128, .5)
+}
+
+.footer_xy p span {
+    display: inline-block;
+    width: .27rem;
+    height: .34rem;
+    position: absolute;
+    top: .14rem
+}
+
+.footer_xy p span:nth-child(1) {
+    right: .8rem;
+    opacity: .4
+}
+
+.footer_xy p span:nth-child(2) {
+    right: .65rem;
+    opacity: .8
+}
+
+.footer_xy p span:nth-child(3) {
+    right: .5rem;
+    opacity: 1
+}
+
+.footer_logo {
+    width: 3.74rem;
+    height: .74rem;
+    margin: .12rem auto 0
+}
+
+.footer_bq {
+    width: 90%;
+    margin: .2rem auto;
+}
+
+.footer_bq .footer-ratings {
+    color: #b5b5b5;
+    font-size: .18rem;
+    line-height: .36rem;
+    padding-left: .5rem;
+    margin-bottom: .3rem;
+    position: relative;
+}
+
+.footer_bq .footer-ratings:after {
+    content: '';
+    width: .1rem;
+    height: .1rem;
+    background: #b5b5b5;
+    display: block;
+    position: absolute;
+    top: .15rem;
+    left: .1rem;
+}
+
+/* pop */
+.pop-global-bg {
+    width: 7.02rem;
+    height: 7.38rem;
+    background: url(../images/pop/pop-global-bg.png) no-repeat 0 0 / 100% 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.pop-plan-a, .pop-plan-b, .pop-plan-lott, .pop-plan-c, .pop-plan-nothing, .pop-plan-d, .pop-plan-e, .pop-gyr-team, .pop-help, .pop-over, .pop-plan-f {
+    margin-top: 1rem;
+}
+
+
+.pop-plan-a p, .pop-plan-b p, .pop-plan-c p, .pop-plan-lott p, .pop-plan-d p, .pop-gyr-team p, .pop-help p, .pop-over p, .pop-plan-f p {
+    font-size: .18rem;
+    color: #00651d;
+    margin: .25rem 0;
+}
+
+.pop-plan-a .btn_play {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_play.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.21rem;
+}
+
+.pop-plan-a .plan-cen, .pop-plan-b .plan-cen, .pop-plan-lott .plan-cen, .pop-plan-nothing .plan-cen, .pop-plan-c .plan-cen, .pop-plan-d .plan-cen, .pop-plan-e .plan-cen, .pop-gyr-team .plan-cen, .pop-help .plan-cen, .pop-over .plan-cen, .pop-plan-f .plan-cen {
+    width: 5.6rem;
+    margin: 0 auto;
+}
+
+.pop-plan-b p, .pop-plan-f p {
+    font-size: .26rem;
+    text-align: center;
+    margin: .8rem 0;
+}
+
+
+.pop-plan-b .btn_play {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_close.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.21rem;
+}
+
+
+/* 答题弹框  字体 */
+.pop-plan-lott::after, .pop-gyr-team::after {
+    content: '퀴즈 도전';
+    color: #fff;
+    font-size: .3rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: .1rem;
+}
+
+.pop-plan-lott p, .pop-gyr-team p {
+    font-size: .2rem;
+}
+
+.pop-plan-lott .lott-tips-msg {
+    width: 100%;
+    color: #f7ffd4;
+    font-size: .25rem;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: .5rem;
+}
+
+.pop-plan-lott .plan-cen .options, .pop-gyr-team .plan-cen .options {
+    width: 4.35rem;
+    height: .4rem;
+    text-align: center;
+    line-height: .4rem;
+    color: #f5ffc7;
+    font-size: .2rem;
+    background: #259e48;
+    margin: 0 auto .2rem;
+}
+
+/* 守林人营地 */
+.pop-plan-c p {
+    color: #00651d;
+    font-size: .28rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: .8rem;
+}
+
+.btn_get_code {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_get_code.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.21rem;
+}
+
+/* 无事发生 */
+.pop-plan-nothing {}
+
+.btn_nothing {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_nothing.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.21rem;
+}
+
+.pop-plan-nothing p {
+    color: #00651d;
+    font-size: .28rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: .8rem;
+}
+
+/* 遗留物资 第八步 */
+.pop-plan-d p {
+    color: #00651d;
+    font-size: .28rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: .8rem;
+}
+
+.btn_plan_d {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_plan_d.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.21rem;
+}
+
+/* 空中花园补给箱 */
+.pop-plan-e p {
+    color: #00651d;
+    font-size: .28rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: .8rem;
+}
+
+.btn_plan_e, .pop-plan-f .btn_plan_f {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_plan_d.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.21rem;
+}
+
+/* 灰鸦小队支援 */
+.pop-gyr-team p {
+    margin: .1rem auto;
+}
+
+/* 救出伊凡 */
+.pop-help {
+    margin-top: .6rem;
+}
+
+.pop-help p {
+    margin: .1rem auto;
+    text-align: center;
+}
+
+/* over */
+.pop-over p {
+    color: #00651d;
+    font-size: .2rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: .8rem;
+}
+
+.pop-over .btn_plan_over {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_plan_over.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.21rem;
+    text-indent: -999em;
+}
+
+
+/* 答题正确 */
+.pop-victory {
+    width: 4.3rem;
+    margin: 1rem auto 0;
+}
+
+/* 答题错误 */
+.pop-error {
+    width: 4.3rem;
+    margin: 1rem auto 0;
+}
+
+.gray {
+    -webkit-filter: grayscale(60%);
+    /* Chrome, Safari, Opera */
+    filter: grayscale(60%);
+}
+
+/* 活动规则 */
+.pop-hdgz {
+    width: 90%;
+    margin: 1rem auto 0;
+}
+
+.pop-hdgz::after {
+    content: '이벤트 규칙';
+    color: #fff;
+    font-size: .3rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    margin-left: -50%;
+    top: .08rem;
+}
+
+.pop-hdgz p {
+    color: #00651d;
+    font-size: .24rem;
+}
+
+.pop-hdgz .plan-cen {
+    overflow: hidden;
+    width: 100%;
+    padding: 0 .2rem;
+    height: 4.5rem;
+}
+
+.pop-hdgz .plan-cen p {
+    width: 96%;
+}
+
+.mCSB_scrollTools, .mCSB_scrollTools .mCSB_draggerRail {
+    width: .1rem;
+}
+
+/* fb登录 */
+.pop_login {}
+
+.pop_login p {
+    color: #00651d;
+    font-size: .3rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 3rem;
+}
+
+.btn_fb_login {
+    width: 2.1rem;
+    height: .62rem;
+    background: url(../images/pop/btn_fb_login.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.05rem;
+}
+
+/* 获得奖励 */
+.pop-get-reward {
+    margin-top: 1.5rem;
+}
+
+.pop-get-reward .reward-btns {
+    width: 100%;
+    position: absolute;
+    bottom: .7rem
+}
+
+.pop-get-reward .reward-btns .btn {
+    text-indent: -999em;
+    margin: 0 .3rem;
+}
+
+.pop-get-reward .btn_jiaohuan {
+    width: 2.22rem;
+    height: .54rem;
+    background: url(../images/pop/btn_jiaohuan.png) no-repeat 0 0 / 100% 100%;
+}
+
+.pop-get-reward .btn_bottom {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_plan_help.png) no-repeat 0 0 / 100% 100%;
+}
+
+.pop-get-reward .reward-btns {
+    display: flex;
+    justify-content: center;
+}
+
+.pop-get-reward .title-reward {
+    width: 1.82rem;
+    height: .34rem;
+    margin: 0 auto;
+}
+
+.pop-global-bg2 {
+    width: 7.02rem;
+    height: 7.38rem;
+    background: url(../images/pop/pop-global-bg2.png) no-repeat 0 0 / 100% 100%;
+}
+
+.pop-get-reward .reward-lott {
+    display: flex;
+    justify-content: center;
+    margin-top: .6rem;
+}
+
+.pop-get-reward .reward-lott dd {
+    margin-top: .1rem;
+    color: #00651d;
+    font-size: .24rem;
+    text-align: center;
+}
+
+.pop-get-reward .lottpic-icon {
+    width: 1.74rem;
+    height: 1.76rem;
+    margin: 0 .3rem;
+    background: url(../images/pop/lott-pic-bg.png) no-repeat 0 0 / 100% 100%;
+}
+
+/* 灰鸦小队支援-成功 */
+.pop-grayraven-reward {
+    margin-top: 2rem;
+}
+
+.pop-grayraven-reward .lott-pic {
+    width: 1.74rem;
+    height: 1.76rem;
+    margin: 0 auto;
+    background: url(../images/pop/lott-pic-bg.png) no-repeat 0 0 / 100% 100%;
+}
+
+.pop-grayraven-reward .btn_bottom {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_plan_help.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.21rem;
+    text-indent: -999em;
+}
+
+.pop-grayraven-reward p {
+    text-align: center;
+    color: #00651d;
+    font-size: .2rem;
+    margin-top: .4rem;
+}
+
+/* 我的背包 */
+.pop-plan-mylott {
+    margin-top: 1.2rem;
+}
+
+.pop-plan-mylott .plan-cen {
+    width: 84%;
+    margin: 0 auto;
+    height: 3.2rem;
+    overflow: hidden;
+}
+
+.pop-global-bg-mylott {
+    width: 7.02rem;
+    height: 8.28rem;
+    background: url(../images/pop/pop-global-bg-mylott.png) no-repeat 0 0 / 100% 100%;
+    margin: 0 auto;
+}
+
+.pop-plan-mylott .btn_plan {
+    width: 2.42rem;
+    height: .54rem;
+    background: url(../images/pop/btn_mylott.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -1.21rem;
+    text-indent: -999em;
+}
+
+.pop-plan-mylott .dl_lists {
+    color: #00651d;
+    background: #3a9452;
+    width: 5.52rem;
+    height: .72rem;
+    font-size: .2rem;
+    margin: 0 auto .1rem;
+    border-radius: .05rem;
+    position: relative;
+}
+
+.pop-plan-mylott .dl_lists dd {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 0 auto;
+    padding: .04rem .04rem;
+}
+
+.pop-plan-mylott .dl_lists .copyele {
+    width: 1.18rem;
+    height: .34rem;
+    background: url(../images/pop/copyele.png) no-repeat 0 0 / 100% 100%;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.17rem;
+    right: .2rem;
+    text-indent: -999em;
+    cursor: pointer;
+}
+
+.pop-plan-mylott .dl_lists .code {
+    width: 2.42rem;
+    height: .4rem;
+    background: #f5ffc6;
+    line-height: .4rem;
+    color: #00651d;
+    font-size: .2rem;
+    text-align: center;
+    margin-left: .2rem;
+}
+
+.pop-plan-mylott .dl_lists .cms-lott-icon {
+    display: block;
+    width: 1.3rem;
+    height: .65rem;
+    border-radius: .05rem;
+    background: #f5ffc7;
+
+}
+
+.pop-plan-mylott .tipmsg {
+    width: 5.52rem;
+    margin: .1rem auto 0;
+    font-size: .18rem;
+    color: #00651d;
+    line-height: .34rem;
+}
+
+.pop-plan-mylott .tipmsg dt {
+    font-weight: bold;
+}
