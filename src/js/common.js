@@ -1,112 +1,132 @@
-/*wlo:Cflower*/
+/* wlo:Cflower */
+
+import $ from 'jquery';
 
 // import './jquery.mCustomScrollbar.concat.min'
+
+import planAPic from '../images/pop/plan-a-pic.png'
+import planBPic from '../images/pop/plan-b-pic.png'
+import planLottPic from '../images/pop/plan-lott-pic.png'
+import planVictory from '../images/pop/plan-victory.png'
+import planError from '../images/pop/plan-error.png'
+import planCPic from '../images/pop/plan-c-pic.png'
+import planNothingPic from '../images/pop/plan-nothing-pic.png'
+import planWz2Pic from '../images/pop/plan-wz2-pic.png'
+import planEPic from '../images/pop/plan-e-pic.png'
+import planWz3Pic from '../images/pop/plan-wz3-pic.png'
+import grayravenTeam from '../images/pop/grayraven-team.png'
+import planHelpPic from '../images/pop/plan-help-pic.png'
+import planOverPic from '../images/pop/plan-over-pic.png'
+
+import titleReward from '../images/pop/title-reward.png'
 
 let dialog;
 if (!dialog) dialog = {};
 dialog = {
-    //关闭  document.location.reload()
-    closeDiv: function () {
-        $("body").css("position", "relative");
-        $("#alertInfo").stop(true, true).animate({
-            "top": "-100%",
-            "opacity": "0"
-        }, "fast", function () {
-            $("#maskLayer,#alertInfo").remove().hide();
+    // 关闭  document.location.reload()
+    closeDiv() {
+        $('body').css('position', 'relative');
+        $('#alertInfo').stop(true, true).animate({
+            top: '-100%',
+            opacity: '0',
+        }, 'fast', () => {
+            $('#maskLayer,#alertInfo').remove().hide();
         });
     },
     //
-    maskLayer: function () {
-        $("#maskLayer,#alertInfo").remove();
-        var maskLayer = "<div id='maskLayer'></div>";
-        var alertInfo = "<div id='alertInfo'><span class='close'>关闭</span></div>";
-        $("body").append(maskLayer, alertInfo);
+    maskLayer() {
+        $('#maskLayer,#alertInfo').remove();
+        const maskLayer = "<div id='maskLayer'></div>";
+        const alertInfo = "<div id='alertInfo'><span class='close'>关闭</span></div>";
+        $('body').append(maskLayer, alertInfo);
         $('.wrap').addClass('row');
-        $("#maskLayer").height('100%').show();
+        $('#maskLayer').height('100%').show();
     },
-    //显示提示信息框
-    showInfo: function (alertHtml) {
+    // 显示提示信息框
+    showInfo(alertHtml) {
         dialog.maskLayer();
         // $("body").css({'position':'fixed','width':'100%'});
-        var _winH = $(window).height(); //﹣﹣﹣﹣﹣﹣﹣﹣﹣﹣﹣┐
-        var _scrollTop = $(document).scrollTop(); //　　　　　　　　　　　      ├→
-        $("#alertInfo").append(alertHtml).show(); //﹣﹣﹣﹣﹣﹣﹣﹣﹣﹣﹣┘
-        var _thisDomWidth = $("#alertInfo").outerWidth();
-        var _thisDomHeight = $("#alertInfo").outerHeight();
-        var topD = parseInt(_scrollTop + (_winH - _thisDomHeight) / 2);
-        var mL = parseInt(_thisDomWidth / 2);
+        const _winH = $(window).height(); // ﹣﹣﹣﹣﹣﹣﹣﹣﹣﹣﹣┐
+        const _scrollTop = $(document).scrollTop(); //　　　　　　　　　　　      ├→
+        $('#alertInfo').append(alertHtml).show(); // ﹣﹣﹣﹣﹣﹣﹣﹣﹣﹣﹣┘
+        const _thisDomWidth = $('#alertInfo').outerWidth();
+        const _thisDomHeight = $('#alertInfo').outerHeight();
+        let topD = parseInt(_scrollTop + (_winH - _thisDomHeight) / 2);
+        const mL = parseInt(_thisDomWidth / 2);
         if (_thisDomHeight >= _winH) {
             topD = _scrollTop;
             if (_scrollTop + _thisDomHeight >= $(document).height()) {
                 topD = $(document).height() - _thisDomHeight;
-            };
-            $("#alertInfo").css("position", "absolute");
+            }
+            $('#alertInfo').css('position', 'absolute');
         } else {
             topD = (_winH - _thisDomHeight) / 2;
-            $("#alertInfo").css("position", "fixed");
-        };
-        $("#alertInfo").css({
-            "margin-left": "-" + mL + "px"
+            $('#alertInfo').css('position', 'fixed');
+        }
+        $('#alertInfo').css({
+            'margin-left': `-${mL}px`,
         }).stop(true, true).animate({
-            "top": topD + "px",
-            "margin-left": "-" + mL + "px",
-            "opacity": "1"
-        }, "fast");
+            top: `${topD}px`,
+            'margin-left': `-${mL}px`,
+            opacity: '1',
+        }, 'fast');
     },
-    //改变窗口大小时改变弹出层的位置
-    alertInfoPo: function () {
-        var _winHResize = $(window).height();
-        var _scrollTopResize = $(document).scrollTop();
-        var _thisDomWidthResize = $("#alertInfo").outerWidth();
-        var _thisDomHeightResize = $("#alertInfo").outerHeight();
-        var topResize = parseInt(_scrollTopResize + (_winHResize - _thisDomHeightResize) / 2);
-        if (topResize >= $("body").height() - _thisDomHeightResize) {
-            _scrollTopResize = $("body").height() - _thisDomHeightResize;
+    // 改变窗口大小时改变弹出层的位置
+    alertInfoPo() {
+        const _winHResize = $(window).height();
+        let _scrollTopResize = $(document).scrollTop();
+        const _thisDomWidthResize = $('#alertInfo').outerWidth();
+        const _thisDomHeightResize = $('#alertInfo').outerHeight();
+        let topResize = parseInt(_scrollTopResize + (_winHResize - _thisDomHeightResize) / 2);
+        if (topResize >= $('body').height() - _thisDomHeightResize) {
+            _scrollTopResize = $('body').height() - _thisDomHeightResize;
             topResize = _scrollTopResize - (_winHResize - _thisDomHeightResize) / 2;
-        };
+        }
         if (_thisDomHeightResize >= _winHResize) {
             topResize = _scrollTopResize;
             if (_scrollTopResize + _thisDomHeightResize >= $(document).height()) {
                 topResize = $(document).height() - _thisDomHeightResize;
-            };
-            $("#alertInfo").css("position", "absolute");
+            }
+            $('#alertInfo').css('position', 'absolute');
         } else {
             topResize = (_winHResize - _thisDomHeightResize) / 2;
-            $("#alertInfo").css("position", "fixed");
-        };
-        $("html,body").stop(true, true).animate({
-            scrollTop: _scrollTopResize
+            $('#alertInfo').css('position', 'fixed');
+        }
+        $('html,body').stop(true, true).animate({
+            scrollTop: _scrollTopResize,
         });
-        $("#alertInfo").stop(true, true).animate({
-            "top": topResize + "px",
-            "margin-left": "-" + (_thisDomWidthResize / 2) + "px"
-        })
-        $("#maskLayer").height($("body").height());
+        $('#alertInfo').stop(true, true).animate({
+            top: `${topResize}px`,
+            'margin-left': `-${_thisDomWidthResize / 2}px`,
+        });
+        $('#maskLayer').height($('body').height());
     },
-    //视频弹窗
-    alertVideo: function (videoUrl) {
-        let sendUrl = videoUrl;
+    // 视频弹窗
+    alertVideo(videoUrl) {
+        const sendUrl = videoUrl;
 
         dialog.showInfo(
-            "<div class='pop_warp  popytbVideo'>" +
-            "<div class='before '>"
+            '<div class=\'pop_warp  popytbVideo\'>'
+            + '<div class=\'before \'>'
             // +"<embed src='"+videoUrl+"' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='true' wmode='opaque'>"
             // + "<iframe border='0' marginwidth='0' framespacing='0' marginheight='0' src='https://www.youtube.com/embed/" + sendUrl + "' frameborder='0' noresize='scrolling='no' width='100%' height='100%' vspale='0' id='iframe' name='iframe' allowfullscreen></iframe>" +
-            + '<video src="' + sendUrl + '" muted loop autoplay="autoplay" playsinline="" webkit-playsinline="" x5-playsinline="" controls="controls"></video>' +
-            "</div>" +
-            "</div>")
+            + `<video src="${sendUrl}" muted loop autoplay="autoplay" playsinline="" webkit-playsinline="" x5-playsinline="" controls="controls"></video>`
+            + '</div>'
+            + '</div>',
+        );
     },
-    //图片弹窗
-    alertImages: function (imgUrl) {
+    // 图片弹窗
+    alertImages(imgUrl) {
         dialog.showInfo(
-            "<div class='pop_warp pop_warp_img popVideo' id='custom_scrollbar'>" +
-            "<div class='before '>" +
-            `<img class="imgcove" src="${imgUrl}" alt="">` +
-            "</div>" +
-            "</div>")
+            "<div class='pop_warp pop_warp_img popVideo' id='custom_scrollbar'>"
+            + "<div class='before '>"
+            + `<img class="imgcove" src="${imgUrl}" alt="">`
+            + '</div>'
+            + '</div>',
+        );
     },
     // UID登录
-    alertUidLogin: function () {
+    alertUidLogin() {
         const uidHtml = `
             <a href="https://grayraven.onelink.me/gj4i/eden" class="btn btn_down_link" target="_blank"> https://grayraven.onelink.me/gj4i/eden </a>
             <a href="https://pgrjpdeeplink.onelink.me/hQpR/6d9356f1" target="_blank" class="btn btn_gogame"></a> `;
@@ -115,11 +135,11 @@ dialog = {
             <div class="borbox">
                 ${uidHtml}
             </div>
-        </div>`)
+        </div>`);
     },
     // 登陆
-    alertPopLogin: function () {
-        var LoginHtml = `
+    alertPopLogin() {
+        const LoginHtml = `
             <a href="https://grayraven.kr/firn-night/auth.html?authclient=facebook" target="_blank" class="btn btn_fb_login"></a>
         `;
 
@@ -128,12 +148,12 @@ dialog = {
                 <p>로그인 후 이벤트 참여 가능</p>
                 ${LoginHtml}
             </div>
-        </div>`)
+        </div>`);
     },
     // pop1
-    alertPop_a: function () {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove" src="../images/pop/plan-a-pic.png" alt="">
+    alertPop_a() {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove" src="${planAPic}" alt="">
             <p>어느날, 곡은 한 통의 비밀서신을 받았습니다. 서신에는 어딘가에 신비한 고서가 숨겨져 있으며, 고서 중에는 구룡 고도에 들어가 유적을 복원하는 방법이 적혀 있을 수도 있다는 내용이 적혀져 있었습니다.</p>
             <p>[나는 연합공동체의 주인이자 구룡의 정신이다. 구룡은 구룡의 방식으로 미래를 결정한다. 구룡 고도 유적으로 들어가는 방법은 외부에 알려져서는 안 된다.]</p>
         </div>`;
@@ -143,12 +163,12 @@ dialog = {
                 ${_html}
                 <a href="javascript:;" class="btn btn_play"></a>
             </div>
-        </div>`)
+        </div>`);
     },
     // pop2
-    alertPop_b: function () {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove" src="../images/pop/plan-b-pic.png" alt="">
+    alertPop_b() {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove" src="${planBPic}" alt="">
             <p>곡은 지상의 침식체들을 공격하며, <br/> 거침없이 앞으로 나아갔습니다. </p>
         </div>`;
 
@@ -160,9 +180,9 @@ dialog = {
         </div>`);
     },
     // 答题
-    alertPop_lott: function (msg, option1, option2, option3, id) {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove" src="../images/pop/plan-lott-pic.png" alt="">
+    alertPop_lott(msg, option1, option2, option3, id) {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove" src="${planLottPic}" alt="">
             <p>${msg}</p>
 
             <div class="options plana" data-id="${id}" data-option='a'>${option1}</div>
@@ -178,9 +198,9 @@ dialog = {
         </div>`);
     },
     // 答题正确
-    alertPop_lott_victory: function () {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove" src="../images/pop/plan-victory.png" alt="">
+    alertPop_lott_victory() {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove" src="${planVictory}" alt="">
         </div>`;
 
         dialog.showInfo(`<div class="pop pop-global-bg">
@@ -191,9 +211,9 @@ dialog = {
         </div>`);
     },
     // 答题错误
-    alertPop_lott_error: function () {
-        let _html = `<div class="plan-cen gray"> 
-            <img class="imgcove" src="../images/pop/plan-error.png" alt="">
+    alertPop_lott_error() {
+        const _html = `<div class="plan-cen gray"> 
+            <img class="imgcove" src="${planError}" alt="">
         </div>`;
 
         dialog.showInfo(`<div class="pop pop-global-bg ">
@@ -204,9 +224,9 @@ dialog = {
         </div>`);
     },
     // pop3
-    alertPop_c: function () {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove" src="../images/pop/plan-c-pic.png" alt="">
+    alertPop_c() {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove" src="${planCPic}" alt="">
             <p>정자에 도착한 곡은 휴식을 <br/> 취한 뒤 걸음을 옮겼습니다.</p>
         </div>`;
 
@@ -218,8 +238,8 @@ dialog = {
         </div>`);
     },
     // pop4 - 无事发生
-    alertPop_nothing: function (msg = '앞으로 전진!', url = '../images/pop/plan-nothing-pic.png') {
-        let _html = `<div class="plan-cen"> 
+    alertPop_nothing(msg = '앞으로 전진!', url = `${planNothingPic}`) {
+        const _html = `<div class="plan-cen"> 
             <img class="imgcove" src="${url}" alt="">
             <p>${msg}</p>
         </div>`;
@@ -232,8 +252,8 @@ dialog = {
         </div>`);
     },
     // pop5 - 遗留物资 第八步
-    alertPop_d: function (img = '../images/pop/plan-wz2-pic.png') {
-        let _html = `<div class="plan-cen"> 
+    alertPop_d(img = `${planWz2Pic}`) {
+        const _html = `<div class="plan-cen"> 
             <img class="imgcove" src="${img}" alt="">
             <p>버려진 지역에서 누군가 두고 <br/> 간 물자를 발견했습니다.</p>
         </div>`;
@@ -246,9 +266,9 @@ dialog = {
         </div>`);
     },
     // pop6 - 空中花园补给箱
-    alertPop_e: function () {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove" src="../images/pop/plan-e-pic.png" alt="">
+    alertPop_e() {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove" src="${planEPic}" alt="">
             <p>공중정원이 두고 간 보급상자를 <br/> 발견했습니다.</p>
         </div>`;
 
@@ -260,8 +280,8 @@ dialog = {
         </div>`);
     },
     // pop5.5 - 遗留物资 第十八步
-    alertPop_f: function (img = '../images/pop/plan-wz3-pic.png') {
-        let _html = `<div class="plan-cen"> 
+    alertPop_f(img = `${planWz3Pic}`) {
+        const _html = `<div class="plan-cen"> 
             <img class="imgcove" src="${img}" alt="">
             <p>버려진 지역에서 누군가 두고 <br/> 간 물자를 발견했습니다.</p>
         </div>`;
@@ -274,9 +294,9 @@ dialog = {
         </div>`);
     },
     // pop7 - 灰鸦小队支援
-    alertPop_grayravenTeam: function (option1, option2, option3) {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove" src="../images/pop/grayraven-team.png" alt="">
+    alertPop_grayravenTeam(option1, option2, option3) {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove" src="${grayravenTeam}" alt="">
             <p>임무 수행 중 그레이 레이븐 소대를 만났습니다.소대원 중 한 명을 곡에게 지원 보낼 수 있습니다.
 누구를 보내시겠습니까?</p>
 
@@ -292,9 +312,9 @@ dialog = {
         </div>`);
     },
     // pop8 - 救出伊凡
-    alertPop_help: function () {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove" src="../images/pop/plan-help-pic.png" alt="">
+    alertPop_help() {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove" src="${planHelpPic}" alt="">
             <p>곡은 어느 동굴에서 고서를 발견했습니다.</p>
             <p>다행히 고서에는 구룡 고도와 관련된 내용만 기록돼 있을 뿐 구룡 고도 <br/> 안에 들어가는 방법은 기록돼 있지 않았습니다.</p>
             <p>안도의 한숨을 쉰 곡은 이 고서 역시 소장할 만한 가치가 있다고 생각해 고서를 품에 넣고, <br/>구룡 쪽으로 발걸음을 돌렸습니다.            </p>
@@ -308,9 +328,9 @@ dialog = {
         </div>`);
     },
     // pop9 over
-    alertPop_over: function () {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove" src="../images/pop/plan-over-pic.png" alt="">
+    alertPop_over() {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove" src="${planOverPic}" alt="">
             <p>이번 위기는 잘 넘어갔지만, 연합 공동체의 주인이자 구룡의 
             정신으로써 앞으로의 전투를 준비해야 합니다.</p>
         </div>`;
@@ -323,9 +343,9 @@ dialog = {
         </div>`);
     },
     // 获得奖励
-    alertPop_get_reward: function (img1, img2, txt1, txt2) {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove title-reward" src="../images/pop/title-reward.png" alt="">
+    alertPop_get_reward(img1, img2, txt1, txt2) {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove title-reward" src="${titleReward}" alt="">
             
             <div class="reward-lott">
                 <dl class="lottpic-icon">
@@ -351,9 +371,9 @@ dialog = {
         </div>`);
     },
     // 获得奖励2 - 只有一个奖励时
-    alertPop_get_reward_one: function (img, txt) {
-        let _html = `<div class="plan-cen"> 
-            <img class="imgcove title-reward" src="../images/pop/title-reward.png" alt="">
+    alertPop_get_reward_one(img, txt) {
+        const _html = `<div class="plan-cen"> 
+            <img class="imgcove title-reward" src="${titleReward}" alt="">
             
             <div class="reward-lott">
                 <dl class="lottpic-icon">
@@ -375,8 +395,8 @@ dialog = {
         </div>`);
     },
     // 灰鸦小队支援-成功
-    alertPop_grayraven_reward: function (img, txt) {
-        let _html = `<div class="plan-cen"> 
+    alertPop_grayraven_reward(img, txt) {
+        const _html = `<div class="plan-cen"> 
             <img class="imgcove lott-pic" src="${img}" alt="">
             <p> ${txt}</p>
         </div>`;
@@ -389,8 +409,8 @@ dialog = {
         </div>`);
     },
     // 活动规则
-    alertPop_gz: function () {
-        let _html = `<div class="plan-cen"> 
+    alertPop_gz() {
+        const _html = `<div class="plan-cen"> 
 
             <p>이벤트 기간:X월XX일~X월XX일 23：59</p>
             <br/>
@@ -440,8 +460,8 @@ dialog = {
         // $(".pop-hdgz .plan-cen").mCustomScrollbar();
     },
     // 我的背包
-    alertPop_mylott: function (data) {
-        // let _html = `<div class="plan-cen"> 
+    alertPop_mylott(data) {
+        // let _html = `<div class="plan-cen">
         //     <dl class='dl_lists'>
         //         <dd> <b class="cms-lott-icon"></b> <span class="code" id='dum1'>XDF3FXCV</span> </dd>
         //         <i class='copyele'>COPY</i>
@@ -449,12 +469,49 @@ dialog = {
         // </div>`;
 
         let _htmlInner = '';
+        let lottImg = '';
         for (let i = 0; i < data.length; i++) {
             const element = data[i];
 
+            if (data[i].current_serial == 4) {
+                lottImg = `<img class="n1" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/lott-ys-jq1.png" alt="">
+                <img class="n2" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/lott-wq-jq1.png" alt="">
+                `;
+            }
+
+            if (data[i].current_serial == 8) {
+                lottImg = `<img class="n1" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/lott-wz-jq1.png" alt="">
+                <img class="n2" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/lott-wz-jq2.png" alt="">
+                `;
+            }
+
+            if (data[i].current_serial == 12) {
+                lottImg = `<img class="n3" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/lott-kz-jq1.png" alt="">`;
+            }
+
+            if (data[i].current_serial == 18) {
+                lottImg = `<img class="n1" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/lott-ls-jq1.png" alt="">
+                <img class="n2" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/lott-jy-jq1.png" alt="">
+                `;
+            }
+
+            if (data[i].current_serial == 25) {
+                sess_partner_id = JSON.parse(sessionStorage.getItem('sess-partner-id'));
+
+                if (sess_partner_id == 1) {
+                    lottImg = `<img class="n3" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/plan-lxy.png" alt="">`;
+                }
+                if (sess_partner_id == 2) {
+                    lottImg = `<img class="n3" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/plan-lm.png" alt="">`;
+                }
+                if (sess_partner_id == 3) {
+                    lottImg = `<img class="n3" src="//cdnstatic.herogame.com/static/grayraven_kr/firnnight/images/pop/plan-li.png" alt="">`;
+                }
+            }
+
             _htmlInner += ` 
             <dl class='dl_lists'>
-                <dd> <b class="cms-lott-icon">${data[i].current_serial}</b> <span class="code" id='dum${i + 1}'>${data[i].gift_code}</span> </dd>
+                <dd> <b class="cms-lott-icon">${lottImg}</b> <span class="code" id='dum${i + 1}'>${data[i].gift_code}</span> </dd>
                 <i class='copyele'>COPY</i>
             </dl>
         `;
@@ -481,8 +538,7 @@ dialog = {
 
 };
 
-
-export { dialog }
+export { dialog };
 
 // 默认开始  1
 // dialog.alertPop_a();
@@ -558,7 +614,6 @@ export { dialog }
 
 // 25 摩尔曼斯克港
 // dialog.alertPop_over();
-
 
 // dialog.alertPop_lott_victory();
 // dialog.alertPop_lott_error();

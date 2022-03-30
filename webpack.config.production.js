@@ -230,10 +230,10 @@ module.exports = {
         // 运行后：
         // 9:1  warning  Unexpected console statement  no-console
         // 第9行 第一个字符 一个警告 ， 意外的控制台语句  -- 规则去eslint 查看no-console 规则
-        new ESLintPlugin({
-            // 启用 ESLint 自动修复特性。
-            fix: true,
-        }),
+        // new ESLintPlugin({
+        //     // 启用 ESLint 自动修复特性。
+        //     fix: true,
+        // }),
         // 提取js中的css 为单独文件
         new MiniCssExtractPlugin({
             filename: 'css/build_[contenthash:5].css',

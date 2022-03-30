@@ -22,6 +22,9 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 // 压缩 js 代码
 const TerserPlugin = require("terser-webpack-plugin");
 
+// 本地模擬接口請求依賴
+const { createProxyMiddleware } = require('http-proxy-middleware'); // 请求代理中间件
+
 
 // node 模块 用来拼接绝对路径的方法
 // const { resolve } = require('path');
@@ -74,7 +77,7 @@ module.exports = {
                     dataUrlCondition: {
                         maxSize: 8 * 1024 // 8kb
                     }
-                }
+                },
             },
             // 处理js
             {
@@ -212,6 +215,14 @@ module.exports = {
         // 在构建失败时不刷新页面作为回退 便于查看错误
         // 启用热模块替换功能，在构建失败时不刷新页面作为回退，使用 hot: 'only'：
         hot: true,
+        // 代理
+        proxy: {
+            '/firn-night': {
+                target: 'http://grayraven-kr.demo.herogame.com', // 目标服务器 host    
+                changeOrigin: true,
+                secure: false
+            }
+        }
         // 指定要使用的 host。局域访问
         // host: '192.168.1.3',
         // 端口号
